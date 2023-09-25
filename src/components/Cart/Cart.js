@@ -22,20 +22,16 @@ const Cart = (props) => {
 
   const submitOrderHandler = (userData) => {
     setIsSubmitting(true);
-    fetch(
-      "https://food-order-app-6aa28-default-rtdb.firebaseio.com/orders.json",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          user: userData,
-          orderedItems: cartCtx.items,
-        }),
-      }
+    fetch("https://food-order-app-6aa28-default-rtdb.firebaseio.com/orders.json", {
+      method: "POST",
+      body: JSON.stringify({
+        user: userData,
+        orderedItems: cartCtx.items,
+      }),
+    }
     )
       .then((res) => res.json())
-      .catch((error) => {
-        setHttpError("Something went wrong!");
-      });
+      .catch(() => setHttpError("Something went wrong!"));
     setIsSubmitting(false);
     setDidSubmit(true);
     cartCtx.clearCart();
@@ -44,9 +40,7 @@ const Cart = (props) => {
   return (
     <Modal onClose={props.onClose}>
       {isSubmitting && <p>Sending order data...</p>}
-      {!isSubmitting && didSubmit && !httpError && (
-        <p>Successfully sent the order!</p>
-      )}
+      {!isSubmitting && didSubmit && !httpError && (<p>Successfully sent the order!</p>)}
       {!isSubmitting && didSubmit && httpError && <p>{httpError}</p>}
       {!isSubmitting && !didSubmit && !httpError && (
         <React.Fragment>
@@ -66,22 +60,11 @@ const Cart = (props) => {
             <span>Total Amout</span>
             <span>{totalAmount}</span>
           </div>
-          {isCheckout && (
-            <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
-          )}
+          {isCheckout && (<Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />)}
           {!isCheckout && (
             <div className={classes.actions}>
-              <button
-                className={classes["button--alt"]}
-                onClick={props.onClose}
-              >
-                Close
-              </button>
-              {hasItems && (
-                <button className={classes.button} onClick={orderHandler}>
-                  Order
-                </button>
-              )}
+              <button className={classes["button--alt"]} onClick={props.onClose}>Close</button>
+              {hasItems && (<button className={classes.button} onClick={orderHandler}>Order</button>)}
             </div>
           )}
         </React.Fragment>
