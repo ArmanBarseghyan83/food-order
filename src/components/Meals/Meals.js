@@ -9,6 +9,7 @@ const Meals = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
 
+  // Get all meals from the database
   useEffect(() => {
     const fetchMeals = async () => {
       const response = await fetch(

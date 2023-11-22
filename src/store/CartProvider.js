@@ -7,6 +7,7 @@ const defaultCartState = {
   totalAmount: 0,
 };
 
+// Update the state based on the action
 const cartReducer = (state, action) => {
   if (action.type === "ADD") {
     const updatedTotalAmount =
@@ -16,6 +17,7 @@ const cartReducer = (state, action) => {
     );
     const existingItem = state.items[existingItemIndex];
 
+    // If the item exists update its amount, else add the item to the state
     let updatedItems;
     if (existingItem) {
       existingItem.amount = existingItem.amount + action.item.amount;
@@ -31,6 +33,7 @@ const cartReducer = (state, action) => {
     };
   }
 
+  // Remove the item from the state
   if (action.type === "REMOVE") {
     const existingItemIndex = state.items.findIndex(
       (item) => item.id === action.id
@@ -56,6 +59,7 @@ const cartReducer = (state, action) => {
   return defaultCartState;
 };
 
+// Create the provider and pass the cartContext
 const CartProvider = (props) => {
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,

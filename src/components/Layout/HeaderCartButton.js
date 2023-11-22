@@ -7,8 +7,10 @@ const HeaderCartButton = (props) => {
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
   const cartCtx = useContext(CartContext);
 
+  // Get the cart items from the context 
   const { items } = cartCtx;
 
+  // Calculate the number of cart items
   const numberOfCartItems = items.reduce((curNumber, item) => {
     return curNumber + item.amount;
   }, 0);

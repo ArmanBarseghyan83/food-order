@@ -4,6 +4,7 @@ import classes from "./Orders.module.css";
 function OrdersItem(props) {
   const [httpError, setHttpError] = useState("");
 
+  // Delete (cancel) the order from the database
   const calcelHandler = (id) => {
     fetch(
       `https://food-order-app-6aa28-default-rtdb.firebaseio.com/orders/${id}.json`,

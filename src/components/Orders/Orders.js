@@ -12,6 +12,7 @@ function Orders(props) {
     setReload((prev) => !prev);
   };
 
+  // Get all orders from the database
   useEffect(() => {
     fetch(
       "https://food-order-app-6aa28-default-rtdb.firebaseio.com/orders.json"

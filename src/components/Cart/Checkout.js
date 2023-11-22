@@ -13,6 +13,7 @@ const Checkout = (props) => {
     postalCode: true,
   });
 
+
   const nameInputRef = useRef();
   const streetInputRef = useRef();
   const postalCodeInputRef = useRef();
@@ -21,16 +22,19 @@ const Checkout = (props) => {
   const confirmHandler = (event) => {
     event.preventDefault();
 
+    // Collect form input values
     const enteredName = nameInputRef.current.value;
     const enteredStreet = streetInputRef.current.value;
     const enteredPostalCode = postalCodeInputRef.current.value;
     const enteredCity = cityInputRef.current.value;
 
+    // Validate form input values
     const enteredNameIsValid = !isEmpty(enteredName);
     const enteredStreetIsValid = !isEmpty(enteredStreet);
     const enteredCityIsValid = !isEmpty(enteredCity);
     const enteredPostalCodeIsValid = isFiveChars(enteredPostalCode);
 
+    // Update the state based on the validations
     setFormInputsValidity({
       name: enteredNameIsValid,
       street: enteredStreetIsValid,
@@ -44,6 +48,7 @@ const Checkout = (props) => {
       return;
     }
 
+    // Submit the form
     props.onConfirm({
       name: enteredName,
       street: enteredStreet,

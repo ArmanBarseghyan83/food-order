@@ -5,6 +5,7 @@ const MealItemForm = (props) => {
   const [amountIsValid, setAmountIsValid] = useState(true);
   const amountInputRef = useRef();
 
+  // Get the form data and submit
   const submitHandler = (event) => {
     event.preventDefault();
 
